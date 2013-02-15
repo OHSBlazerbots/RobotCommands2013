@@ -1,27 +1,38 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.wpi.first.wpilibj.templates.commands;
+
 
 /**
  *
- * @author bradmiller
+ * @author bhuang
  */
-public class ExampleCommand extends CommandBase {
-
-    public ExampleCommand() {
+public class DriveStraight extends CommandBase {
+    private double m_timeout;
+    public DriveStraight(double timeout) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        m_timeout = timeout;
+        requires(chassis);
+    }
+
+    public DriveStraight() {
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(m_timeout);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        chassis.straight();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

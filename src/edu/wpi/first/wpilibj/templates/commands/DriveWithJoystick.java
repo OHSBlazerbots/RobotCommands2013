@@ -3,6 +3,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * This class maps controls with the joystick to driving the chassis.
  */
@@ -23,6 +25,9 @@ public class DriveWithJoystick extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         chassis.driveWithJoyStick(oi.getJoystick());
+        SmartDashboard.putNumber("Angle", chassis.getAngle());
+        SmartDashboard.putNumber("Acceleration X", chassis.getAccelerationX());
+        SmartDashboard.putNumber("Acceleration Y", chassis.getAccelerationY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
