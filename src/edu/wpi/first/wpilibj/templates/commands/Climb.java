@@ -4,19 +4,28 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 /**
  *
  * @author jcannon
  */
 public class Climb extends CommandBase{
-
-    protected void initialize() {
+    
+    public Climb(){
         requires(CommandBase.pneumatics);
     }
 
+    protected void initialize() {
+        
+    }
+
     protected void execute() {
-        if(CommandBase.pneumatics.getStateClimber()) {
+        if(CommandBase.pneumatics.getStateClimber() == DoubleSolenoid.Value.kForward) {
             pneumatics.putUsDown();
+        }
+        else{
+            pneumatics.pickUsUp();
         }
     }
 

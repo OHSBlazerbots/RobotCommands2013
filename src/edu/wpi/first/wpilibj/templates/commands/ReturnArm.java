@@ -8,8 +8,9 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author jcannon
  */
-public class AdvanceFrisbee extends CommandBase{
-    public AdvanceFrisbee(){
+public class ReturnArm extends CommandBase{
+    
+    public ReturnArm(){
         requires(CommandBase.pneumatics);
     }
 
@@ -18,7 +19,7 @@ public class AdvanceFrisbee extends CommandBase{
     }
 
     protected void execute() {
-        CommandBase.pneumatics.advanceFrisbee();
+        CommandBase.pneumatics.stopAdvance();
     }
 
     protected boolean isFinished() {

@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.templates.commands.DriveWithJoystick;
  */
 public class Chassis extends Subsystem {
     // The RBDrive translates joystick commands into speed controller commands.
-    public RBDrive drive;
+    public static RBDrive drive;
     private Gyro gyro;
     private Accelerometer accelerometerX;
     private Accelerometer accelerometerY;
@@ -59,7 +59,7 @@ public class Chassis extends Subsystem {
      * @param joystick
      */
     public void driveWithJoyStick(Joystick joystick) {
-        drive.arcadeDrive(joystick.getY(), joystick.getX());
+        drive.arcadeDrive(joystick.getY(), -joystick.getX());
     }
 
     /**
@@ -128,9 +128,9 @@ public class Chassis extends Subsystem {
     }
     
     public void driveToAngle(double angle) {
-        if(angle == 0)
+        if(angle < 180)
         {
-            if(getAngle() > 180)
+            if(getAngle() > 180 + angle || getAngle() <= angle)
             {
                 drive.arcadeDrive(0, 0.5);
             }
@@ -138,35 +138,20 @@ public class Chassis extends Subsystem {
                 drive.arcadeDrive(0, -0.5);
             }
         }
-        if(angle == 90)
+        else if(angle < 360)
         {
-            if(getAngle() > 270 || getAngle() < 90)
+            if(getAngle() >= angle || getAngle() < angle - 180)
             {
                 drive.arcadeDrive(0, 0.5);
             }
-            else{
+            else
+            {
                 drive.arcadeDrive(0, -0.5);
             }
         }
-        if(angle == 180)
+        else 
         {
-            if(getAngle() < 180)
-            {
-                drive.arcadeDrive(0, 0.5);
-            }
-            else{
-                drive.arcadeDrive(0, -0.5);
-            }
-        }
-        if(angle == 270)
-        {
-            if(getAngle() > 270 || getAngle() < 90)
-            {
-                drive.arcadeDrive(0, -0.5);
-            }
-            else{
-                drive.arcadeDrive(0, 0.5);
-            }
+            driveToAngle(angle % 360);
         }
     }
 

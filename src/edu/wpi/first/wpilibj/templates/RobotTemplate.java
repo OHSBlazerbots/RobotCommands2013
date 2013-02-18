@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.DriveStraight;
 import edu.wpi.first.wpilibj.templates.commands.PutGyroData;
@@ -24,6 +25,7 @@ public class RobotTemplate extends IterativeRobot {
 
     //Command autonomousCommand;
     Command PutGyroData;
+    //Autonomous AutoRun;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -39,7 +41,8 @@ public class RobotTemplate extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        //autonomousCommand.start();
+        //AutoRun = new Autonomous();
+        //AutoRun.start();
     }
 
     /**
@@ -55,6 +58,7 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
        // autonomousCommand.cancel();
+        //AutoRun.cancel();
         
     }
 

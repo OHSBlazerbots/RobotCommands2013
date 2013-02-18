@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.image.*;
 import edu.wpi.first.wpilibj.image.CriteriaCollection;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.RBDrive;
 import java.lang.Math;
 
 // TODO: FIX THIS!
@@ -18,6 +19,7 @@ public class Targeting extends Subsystem {
     private static Targeting instance;
     private static final double degToRad = Math.PI / 180;
     private static AxisCamera camera;
+   // private static RBDrive drive;
     
     public static Targeting getInstance(){
         if(instance == null){
@@ -100,6 +102,15 @@ public class Targeting extends Subsystem {
             e.printStackTrace();
         }
 
+    }
+    public void centerTarget(int centerX){
+        if(centerX > 310){
+            Chassis.drive.arcadeDrive(0, 0.5);
+        }
+        else if(centerX < 330){
+            Chassis.drive.arcadeDrive(0, -0.5);
+        }
+        
     }
 }
 

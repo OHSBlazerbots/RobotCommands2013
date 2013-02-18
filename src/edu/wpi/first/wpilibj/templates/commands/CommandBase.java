@@ -33,13 +33,17 @@ public abstract class CommandBase extends Command {
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
+        //System.out.println("Initializing...");
         chassis = new Chassis(RobotMap.leftMotor, RobotMap.rightMotor);
+        //System.out.println("Chassis initializing!");
         shooter = new Shooter(RobotMap.SHOOTER_TOP_RELAY_PORT, RobotMap.SHOOTER_BOTTOM_RELAY_PORT/*, RobotMap.SHOOTER_LIMIT_SWITCH_PORT*/);
-        pneumatics = new Pneumatics(RobotMap.FRISBEE_ADVANCE_SOLENOID_PORT, RobotMap.CLIMB_SOLENOID_PORT, RobotMap.COMPRESSOR_PRESSURE_SWITCH_PORT, RobotMap.COMPRESSOR_RELAY_PORT);
+        pneumatics = new Pneumatics(RobotMap.FRISBEE_ADVANCE_RELAY_PORT, RobotMap.CLIMB_SOLENOID_PORT_FORWARD, RobotMap.CLIMB_SOLENOID_PORT_REVERSE, RobotMap.COMPRESSOR_PRESSURE_SWITCH_PORT, RobotMap.COMPRESSOR_RELAY_PORT);
+        //targeting = new Targeting();
         oi = new OI();
-        SmartDashboard.putNumber("Angle", chassis.getAngle());
-        SmartDashboard.putNumber("Acceleration X", chassis.getAccelerationX());
-        SmartDashboard.putNumber("Acceleration Y", chassis.getAccelerationY());
+        //System.out.println("OI Initializing!");
+        //SmartDashboard.putNumber("Angle", chassis.getAngle());
+        //SmartDashboard.putNumber("Acceleration X", chassis.getAccelerationX());
+        //SmartDashboard.putNumber("Acceleration Y", chassis.getAccelerationY());
 
         // Show what command your subsystem is running on the SmartDashboard
 

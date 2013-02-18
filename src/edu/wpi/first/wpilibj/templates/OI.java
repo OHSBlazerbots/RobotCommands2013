@@ -3,9 +3,15 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.commands.AdvanceFrisbee;
+import edu.wpi.first.wpilibj.templates.commands.CenterTarget;
+import edu.wpi.first.wpilibj.templates.commands.Climb;
 import edu.wpi.first.wpilibj.templates.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.templates.commands.PIDalignment;
+import edu.wpi.first.wpilibj.templates.commands.ReturnArm;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
+import edu.wpi.first.wpilibj.templates.commands.ShootProcess;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,29 +21,34 @@ public class OI {
 
     private static OI instance = null;
     private static final int JOYSTICK_PORT = 1;
+    private static final int JOYSTICK_PORT_2 = 2;
     private Joystick joystick;
+    private Joystick joystick2;
     private DriveWithJoystick drive;
     private Button shootButton;
-    private final JoystickButton lineUpButton;
-    private final JoystickButton lineDownButton;
-    private final JoystickButton lineLeftButton;
-    private final JoystickButton lineRightButton;
-    private final JoystickButton cancelButton;
+    private final JoystickButton autoTurnButton;
+    private final JoystickButton centerTargetButton;
+    private final JoystickButton climbButton;
+    private final JoystickButton frisbeeForwardButton;
+    private final JoystickButton frisbeeBackButton;
     
     public OI() {
+        SmartDashboard.putNumber("Autoturn", 0);
         joystick = new Joystick(JOYSTICK_PORT);
-        shootButton = new JoystickButton(joystick, 6);
+        joystick2 = new Joystick(JOYSTICK_PORT_2);
+        shootButton = new JoystickButton(joystick2, 6);
         shootButton.whenPressed(new Shoot());
-        lineUpButton = new JoystickButton(joystick, 4);
-        lineUpButton.whenPressed(new PIDalignment(0));
-        lineDownButton = new JoystickButton(joystick, 1);
-        lineDownButton.whenPressed(new PIDalignment(180));
-        lineLeftButton = new JoystickButton(joystick, 3);
-        lineLeftButton.whenPressed(new PIDalignment(270));
-        lineRightButton = new JoystickButton(joystick, 2);
-        lineRightButton.whenPressed(new PIDalignment(90));
-        cancelButton = new JoystickButton(joystick, 7);
-        cancelButton.whenPressed(new PIDalignment(-5));
+        autoTurnButton = new JoystickButton(joystick, 4);
+        autoTurnButton.whenPressed(new PIDalignment(SmartDashboard.getNumber("Autoturn")));
+        centerTargetButton = new JoystickButton(joystick, 2);
+        //centerTargetButton.whenPressed(new CenterTarget());
+        climbButton = new JoystickButton(joystick2, 4);
+        climbButton.whenPressed(new Climb());
+        frisbeeForwardButton = new JoystickButton(joystick2, 3);
+        frisbeeForwardButton.whenPressed(new AdvanceFrisbee());
+        frisbeeBackButton = new JoystickButton(joystick2, 2);
+        frisbeeBackButton.whenPressed(new ReturnArm());
+        
     }
 
     public static OI getInstance() {
