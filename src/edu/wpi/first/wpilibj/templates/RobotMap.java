@@ -23,13 +23,15 @@ public class RobotMap {
     public static final int COMPRESSOR_RELAY_PORT = 3;
     public static final int SHOOTER_BOTTOM_RELAY_PORT = 1;
     public static final int SHOOTER_TOP_RELAY_PORT = 2;
+    public static final int CLIMB_SOLENOID_RELAY_PORT = 4;
+    public static final int LED_RING_RELAY_PORT = 5;
     
     public static final int SHOOTER_LIMIT_SWITCH_PORT = 1;
     
     
-    public static final int FRISBEE_ADVANCE_RELAY_PORT = 4;
-    public static final int CLIMB_SOLENOID_PORT_FORWARD = 2;
-    public static final int CLIMB_SOLENOID_PORT_REVERSE = 3;
+    
+    public static final int FRISBEE_SOLENOID_PORT_FORWARD = 1;
+    public static final int FRISBEE_SOLENOID_PORT_REVERSE = 2;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;

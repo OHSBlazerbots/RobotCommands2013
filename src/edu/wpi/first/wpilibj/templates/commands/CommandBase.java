@@ -37,8 +37,8 @@ public abstract class CommandBase extends Command {
         chassis = new Chassis(RobotMap.leftMotor, RobotMap.rightMotor);
         //System.out.println("Chassis initializing!");
         shooter = new Shooter(RobotMap.SHOOTER_TOP_RELAY_PORT, RobotMap.SHOOTER_BOTTOM_RELAY_PORT/*, RobotMap.SHOOTER_LIMIT_SWITCH_PORT*/);
-        pneumatics = new Pneumatics(RobotMap.FRISBEE_ADVANCE_RELAY_PORT, RobotMap.CLIMB_SOLENOID_PORT_FORWARD, RobotMap.CLIMB_SOLENOID_PORT_REVERSE, RobotMap.COMPRESSOR_PRESSURE_SWITCH_PORT, RobotMap.COMPRESSOR_RELAY_PORT);
-        //targeting = new Targeting();
+        pneumatics = new Pneumatics(RobotMap.CLIMB_SOLENOID_RELAY_PORT, RobotMap.FRISBEE_SOLENOID_PORT_FORWARD, RobotMap.FRISBEE_SOLENOID_PORT_REVERSE, RobotMap.COMPRESSOR_PRESSURE_SWITCH_PORT, RobotMap.COMPRESSOR_RELAY_PORT);
+        targeting = new Targeting(RobotMap.LED_RING_RELAY_PORT);
         oi = new OI();
         //System.out.println("OI Initializing!");
         //SmartDashboard.putNumber("Angle", chassis.getAngle());

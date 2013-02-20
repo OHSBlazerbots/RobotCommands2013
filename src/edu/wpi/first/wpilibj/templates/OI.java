@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.templates.commands.AdvanceFrisbee;
 import edu.wpi.first.wpilibj.templates.commands.CenterTarget;
 import edu.wpi.first.wpilibj.templates.commands.Climb;
 import edu.wpi.first.wpilibj.templates.commands.DriveWithJoystick;
+import edu.wpi.first.wpilibj.templates.commands.LEDToggler;
 import edu.wpi.first.wpilibj.templates.commands.PIDalignment;
 import edu.wpi.first.wpilibj.templates.commands.ReturnArm;
 import edu.wpi.first.wpilibj.templates.commands.Shoot;
@@ -31,6 +32,7 @@ public class OI {
     private final JoystickButton climbButton;
     private final JoystickButton frisbeeForwardButton;
     private final JoystickButton frisbeeBackButton;
+    private final JoystickButton lightsToggleButton;
     
     public OI() {
         SmartDashboard.putNumber("Autoturn", 0);
@@ -48,6 +50,8 @@ public class OI {
         frisbeeForwardButton.whenPressed(new AdvanceFrisbee());
         frisbeeBackButton = new JoystickButton(joystick2, 2);
         frisbeeBackButton.whenPressed(new ReturnArm());
+        lightsToggleButton = new JoystickButton(joystick2, 7);
+        lightsToggleButton.whenPressed(new LEDToggler());
         
     }
 

@@ -23,18 +23,18 @@ public class Pneumatics extends Subsystem {
     DoubleSolenoid doubleSolenoid;
     Compressor compressor;
 
-    public void pickUsUp(){
+    public void advanceFrisbee(){
         doubleSolenoid.set(DoubleSolenoid.Value.kForward);
         //secondSolenoid.set(true);
     }
-    public void putUsDown(){
+    public void stopAdvance(){
         doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
         //secondSolenoid.set(false);
     }
-    public void advanceFrisbee(){
+    public void pickUsUp(){
         solenoidRelay.set(Relay.Value.kForward);
     }
-    public void stopAdvance(){
+    public void putUsDown(){
         solenoidRelay.set(Relay.Value.kReverse);
     }
     public Value getStateClimber(){

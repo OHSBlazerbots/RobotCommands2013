@@ -1,12 +1,14 @@
 
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.image.*;
 import edu.wpi.first.wpilibj.image.CriteriaCollection;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RBDrive;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import java.lang.Math;
 
 // TODO: FIX THIS!
@@ -19,17 +21,28 @@ public class Targeting extends Subsystem {
     private static Targeting instance;
     private static final double degToRad = Math.PI / 180;
     private static AxisCamera camera;
+    private Relay ledRingRelay;
    // private static RBDrive drive;
     
     public static Targeting getInstance(){
         if(instance == null){
-            instance = new Targeting();
+            instance = new Targeting(RobotMap.LED_RING_RELAY_PORT);
         }
         return instance;
     }
-    public Targeting(){
+    public Targeting(int relayPort){
          camera = AxisCamera.getInstance();
+         ledRingRelay = new Relay(relayPort);
 
+    }
+    
+    public void lightsToggle(){
+        if(ledRingRelay.get() == Relay.Value.kOn){
+            ledRingRelay.set(Relay.Value.kOff);
+        }
+        else{
+            ledRingRelay.set(Relay.Value.kOn);
+        }
     }
 
     public ColorImage processImage() {
